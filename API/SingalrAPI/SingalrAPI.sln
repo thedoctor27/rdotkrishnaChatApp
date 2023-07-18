@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingalrAPI", "SingalrAPI.csproj", "{F1AA6E3E-531C-464F-BC65-BABB7A5B5973}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1AA6E3E-531C-464F-BC65-BABB7A5B5973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1AA6E3E-531C-464F-BC65-BABB7A5B5973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1AA6E3E-531C-464F-BC65-BABB7A5B5973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1AA6E3E-531C-464F-BC65-BABB7A5B5973}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C0A249DD-9585-49CA-9CFA-E60FE68C4C92}
+	EndGlobalSection
+EndGlobal

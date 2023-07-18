@@ -1,0 +1,40 @@
+<div>
+    <h2>
+     Welcom to Chat App DEMO
+    </h2>
+    <br />
+    <label>UserName</label>
+    <input [(ngModel)]="userName" placeholder="userName" />
+    <button (click)="connectToHub()">Start connection</button>
+    <p>
+      {{errorMessage}}
+    </p>
+    <br />
+    <br />
+    <p>
+      Connection state : 
+      
+      <b *ngIf="connectionState == 0">
+        Not Connected
+      </b>
+      <b *ngIf="connectionState == 1">
+        Connecting to Hub, Plz wait ....
+      </b>
+      <b *ngIf="connectionState == 2">
+        Connected <br/> <small>Id : {{ connectionId }}</small>
+      </b>
+      <b *ngIf="connectionState == 3">
+        Connection lost
+      </b>
+    </p>
+    <hr />
+    <ul>
+      <li *ngFor="let message of messages">{{ message }}</li>
+    </ul>
+    <input [(ngModel)]="newMessage" placeholder="Type a message" />
+    <select [(ngModel)]="messageDestination">
+      <option selected value="">To All users</option>
+      <option *ngFor="let option of connectedUsers" [value]="option">{{ option }}</option>
+    </select>
+    <button (click)="sendMessage()">Send</button>
+  </div>
