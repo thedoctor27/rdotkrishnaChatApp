@@ -49,3 +49,7 @@ D:\Fiverr\rdotkrishna\API\SingalrAPI\obj\Debug\net7.0\refint\SingalrAPI.dll
 D:\Fiverr\rdotkrishna\API\SingalrAPI\obj\Debug\net7.0\SingalrAPI.pdb
 D:\Fiverr\rdotkrishna\API\SingalrAPI\obj\Debug\net7.0\SingalrAPI.genruntimeconfig.cache
 D:\Fiverr\rdotkrishna\API\SingalrAPI\obj\Debug\net7.0\ref\SingalrAPI.dll
+D:\Fiverr\rdotkrishna\API\SingalrAPI\bin\Debug\net7.0\Azure.Storage.Blobs.dll
+D:\Fiverr\rdotkrishna\API\SingalrAPI\bin\Debug\net7.0\Azure.Storage.Common.dll
+D:\Fiverr\rdotkrishna\API\SingalrAPI\bin\Debug\net7.0\System.IO.Hashing.dll
+D:\Fiverr\rdotkrishna\API\SingalrAPI\bin\Debug\net7.0\Microsoft.WindowsAzure.Storage.dll

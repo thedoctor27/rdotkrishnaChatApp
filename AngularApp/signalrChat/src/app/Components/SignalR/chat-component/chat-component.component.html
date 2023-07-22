@@ -3,7 +3,7 @@
      Welcom to Chat App DEMO
     </h2>
     <br />
-    <label>UserName</label>
+    <label>UserName (use : user1 / user2 / user3 / user4)</label>
     <input [(ngModel)]="userName" placeholder="userName" />
     <button (click)="connectToHub()">Start connection</button>
     <p>
@@ -21,20 +21,34 @@
         Connecting to Hub, Plz wait ....
       </b>
       <b *ngIf="connectionState == 2">
-        Connected <br/> <small>Id : {{ connectionId }}</small>
+        Connected <br/> <small>Connection Id : {{ connectionId }}</small>
       </b>
       <b *ngIf="connectionState == 3">
         Connection lost
       </b>
     </p>
     <hr />
-    <ul>
-      <li *ngFor="let message of messages">{{ message }}</li>
-    </ul>
-    <input [(ngModel)]="newMessage" placeholder="Type a message" />
-    <select [(ngModel)]="messageDestination">
-      <option selected value="">To All users</option>
-      <option *ngFor="let option of connectedUsers" [value]="option">{{ option }}</option>
-    </select>
-    <button (click)="sendMessage()">Send</button>
+    <div *ngIf="connectionId.length > 0">
+      <ul>
+        <li *ngFor="let message of messages">{{ message }}</li>
+      </ul>
+      <input [(ngModel)]="newMessage" placeholder="Type a message" />
+      <select [(ngModel)]="messageDestination">
+        <option selected value="">To All users</option>
+        <option *ngFor="let option of connectedUsers" [value]="option">{{ option }}</option>
+      </select>
+      <button (click)="sendMessage()">Send</button>
+      <hr />
+      <b>Manage files</b>
+      <div>
+        <label>Upload file</label>
+        <input type="file" (change)="onFileSelected($event)" />
+        <button (click)="onUpload()">Upload</button>
+      </div>
+      <br/>
+      <ul>
+        <li *ngFor="let blob of blobNames"> {{ blob }} | <a target="_blank" [href]="'https://localhost:7055/api/blob/'+blob">Download</a>
+        </li>
+      </ul>
+    </div>
   </div>

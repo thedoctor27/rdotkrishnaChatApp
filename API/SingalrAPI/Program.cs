@@ -1,4 +1,5 @@
 using SingalrAPI;
+using SingalrAPI.Services.BlobService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<IBlobService, BlobService>();
 
 string signalR_ConnectionString = builder.Configuration.GetSection("signalR_ConnectionString").Value;
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HubConnectionBuilder } from '@microsoft/signalr';
+import {BlobService} from '../../../Services/BlobService';
 
 @Component({
   selector: 'app-chat-component',
@@ -7,7 +8,16 @@ import { HubConnectionBuilder } from '@microsoft/signalr';
   styleUrls: ['./chat-component.component.css']
 })
 export class ChatComponentComponent {
+  
+  constructor(private blobService: BlobService) {}
+
+
   private connection: any;
+  
+  selectedFile: File | null = null;
+  blobUrl: any = null;
+
+  public blobNames: string[] = [];
 
   public userName: string = '';
   public connectionId: string = '';
@@ -18,8 +28,9 @@ export class ChatComponentComponent {
   public messages: string[] = [];
   public newMessage: string = '';
   public messageDestination : string = '';
+  
   ngOnInit() {
-    
+    this.onLoad();
   }
 
   private connectToSignalR() {
@@ -54,7 +65,10 @@ export class ChatComponentComponent {
     this.connection.on('receiveMessage', (message: string) => {
       this.messages.push(message);
     });
-
+    this.connection.on('fileUploaded', (message: string[]) => {
+      alert(message);
+      this.onLoad();
+    });
     this.connection.on('userJoined', (names: string[]) => {
       this.connectedUsers= names
     });
@@ -65,15 +79,6 @@ export class ChatComponentComponent {
         this.connectedUsers.splice(index, 1);
       }
     });
-  }
-
-  public connectToHub(){
-    if(this.userName){
-      this.errorMessage = "";
-      this.connectToSignalR();
-    }else{
-      this.errorMessage = "UserName is required to start a connection.";
-    }
   }
   public sendMessage() {
     if (this.newMessage.trim() === '') return;
@@ -86,4 +91,38 @@ export class ChatComponentComponent {
         console.error('Error sending message:', error);
       });
   }
+  public connectToHub(){
+    if(this.userName){
+      this.errorMessage = "";
+      this.connectToSignalR();
+    }else{
+      this.errorMessage = "UserName is required to start a connection.";
+    }
+  }
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+  onLoad(): void {
+    this.blobService.getAllBlobNames().subscribe(
+      (blobNames) => {
+        this.blobNames = blobNames;
+      },
+      (error) => {
+        console.error('Error fetching blob names:', error);
+      }
+    );
+  }
+  onUpload(): void {
+    if (this.selectedFile) {
+      this.blobService.uploadBlob(this.userName,this.selectedFile).subscribe(
+        (response) => {
+          console.log('Blob uploaded successfully!');
+        },
+        (error) => {
+          console.error('Error uploading blob:', error);
+        }
+      );
+    }
+  }
+
 }
